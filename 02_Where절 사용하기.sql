@@ -107,3 +107,30 @@ SELECT * FROM employees WHERE commission_pct is NOT NULL;
 -- 예제 1
 SELECT * FROM employees WHERE manager_id is NULL;
 
+-- ORDER BY (열 + ASD or DESC 열의 오름차순 또는 내림차순 정렬)
+SELECT * FROM employees ORDER BY employee_id DESC;
+SELECT * FROM employees ORDER BY employee_id ASC;
+SELECT * FROM employees ORDER BY employee_id; -- ASC 기본정렬은 생략가능
+
+-- 정렬 열이 2개 이상일때 첫번째 열로 정렬후 두번째 열 정렬
+SELECT department_id, employee_id, first_name, last_name
+FROM employees
+ORDER BY department_id, employee_id;
+
+-- 별칭으로 정렬
+SELECT department_id, last_name, salary*12 연봉
+FROM employees ORDER BY 연봉 DESC;
+
+-- 예제 1
+SELECT employee_id, first_name, last_name
+FROM employees ORDER BY employee_id DESC;
+
+-- 예제 2
+SELECT *
+FROM employees WHERE job_id LIKE '%CLERK%'
+ORDER BY salary DESC; -- ORDER BY는 무조건 끝에서 사용
+
+-- 예제 3
+SELECT employee_id 직원번호, last_name 직원이름, department_id 부서번호, salary 월급
+FROM employees WHERE employee_id BETWEEN 120 AND 150
+ORDER BY 부서번호 DESC, 월급 DESC;
