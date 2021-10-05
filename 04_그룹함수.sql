@@ -59,7 +59,7 @@ HAVING AVG(salary) > 10000
 ORDER BY 급여합계 DESC;
 
 -- 예제 2
-SELECT department_id 부서번호, ROWID( AVG(salary)) 평균급여
+SELECT department_id 부서번호, ROUND( AVG(salary)) 평균급여
 FROM employees WHERE department_id != 40
 GROUP BY department_id
 HAVING AVG(salary) <= 7000;
