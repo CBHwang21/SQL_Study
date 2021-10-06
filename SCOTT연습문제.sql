@@ -111,5 +111,8 @@ FROM emp ORDER BY deptno DESC, ename ASC, sal DESC;
 SELECT ename, sal, round(sal*1.13-sal) bonus, deptno
 FROM emp WHERE deptno=10;
 -- 34
-SELECT ename, sal, comm, sal+comm total
+SELECT ename, sal, NVL(comm, 0), sal+NVL(comm, 0) total
 FROM emp ORDER BY total DESC;
+-- 35
+SELECT ename, sal, to_char(round(sal*0.15, 1), '$9999.9') 회비
+FROM emp WHERE sal BETWEEN 1500 and 3000;
