@@ -7,3 +7,6 @@ identified by 1234;
 
 -- SCOTT 계정을 설치 및 비번정하기
 @C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql;
+ALTER USER SCOTT
+IDENTIFIED BY 1234
+ACCOUNT UNLOCK ;

@@ -106,13 +106,46 @@ SELECT *
 FROM emp ORDER BY deptno ASC, sal DESC;
 -- 32
 SELECT deptno, ename, sal
-FROM emp ORDER BY deptno DESC, ename ASC, sal DESC;
+FROM emp ORDER BY deptno DESC, ename, sal DESC;
 -- 33
-SELECT ename, sal, round(sal*1.13-sal) bonus, deptno
+SELECT ename, sal, round(sal*0.13) bonus, deptno
 FROM emp WHERE deptno=10;
 -- 34
 SELECT ename, sal, NVL(comm, 0), sal+NVL(comm, 0) total
 FROM emp ORDER BY total DESC;
 -- 35
-SELECT ename, sal, to_char(round(sal*0.15, 1), '$9999.9') 회비
+SELECT ename, sal, to_char(sal*0.15, '$9999.9') 회비
 FROM emp WHERE sal BETWEEN 1500 and 3000;
+-- 36
+SELECT d.dname , COUNT(*)
+FROM emp e join dept d on e.deptno = d.deptno
+group by d.dname
+having count(*) > 5;
+-- 37
+SELECT job, SUM(sal) 급여합계
+FROM emp
+WHERE job != 'SALESMAN'
+GROUP BY job
+HAVING SUM(sal) > 5000;
+-- 38
+SELECT e.empno, e.ename, e.sal, s.grade
+FROM emp e join salgrade s
+on e.sal between s.losal and s.hisal;
+-- 39 열의 이름을 입력할때 띄우고 싶으면 ""사용
+SELECT deptno, COUNT(*) 사원수, count(comm) "커미션 받은 사원수"
+FROM emp
+GROUP BY deptno;
+-- 40
+SELECT ename,deptno,
+    decode(deptno, 10, '총무부',
+                   20, '개발부',
+                   30, '영업부'
+           ) 부서명
+FROM emp;
+
+SELECT ename, deptno, CASE deptno
+WHEN 10 THEN '총무부'
+WHEN 20 THEN '개발부'
+WHEN 30 THEN '영업부'
+end "부서명"
+FROM emp;
